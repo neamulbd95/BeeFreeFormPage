@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Beefree SDK - Simple Static Form</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    #bee-plugin-container {
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      left: 5px;
+      right: 5px;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="bee-plugin-container"></div>
+
+  <script src="https://app-rsrc.getbee.io/plugin/BeePlugin.js"></script>
+  <script type="text/javascript">
+    // Static form: Name, Email, Number, Submit — no contentDialog, no form_id tracking
+    var defaultForm = {
+      structure: {
+        title: "Simple Form",
+        description: "A minimal example with just three fields.",
+        fields: {
+          name: {
+            type: "text",
+            label: "Name",
+            canBeRemovedFromLayout: true,
+            removeFromLayout: false,
+            canBeModified: true,
+            attributes: {
+              required: true,
+              placeholder: "Enter your name",
+            },
+          },
+          email: {
+            type: "email",
+            label: "Email",
+            canBeRemovedFromLayout: true,
+            removeFromLayout: false,
+            canBeModified: true,
+            attributes: {
+              required: true,
+              placeholder: "Enter your email",
+            },
+          },
+          number: {
+            type: "number",
+            label: "Number",
+            canBeRemovedFromLayout: true,
+            removeFromLayout: false,
+            canBeModified: true,
+            attributes: {
+              required: false,
+              placeholder: "Enter a number",
+            },
+          },
+          submit_button: {
+            type: "submit",
+            label: "",
+            canBeRemovedFromLayout: false,
+            removeFromLayout: false,
+            attributes: {
+              value: "Submit",
+              name: "submit_button",
+            },
+          },
+        },
+        layout: [
+          ["name"],
+          ["email"],
+          ["number"],
+          ["submit_button"],
+        ],
+        attributes: {
+          "accept-charset": "UTF-8",
+          action: "http://localhost:3001/api/form-submit",
+          autocomplete: "on",
+          enctype: "application/x-www-form-urlencoded",
+          method: "post",
+          novalidate: false,
+          target: "_self",
+        },
+      },
+    };
+
+    var beeConfig = {
+      container: "bee-plugin-container",
+      language: "en-US",
+      trackChanges: true,
+      defaultForm: defaultForm,
+      onError: function (error) {
+        console.error("Bee Error:", error);
+        if (error.code === 5101 || error.code === 5102) {
+          getBeeToken(token => {
+            if (error.code === 5101) bee.updateToken(token);
+            else initBee(token);
+          });
+        }
+      },
+    };
+
+    var bee = null;
+
+    async function getBeeToken(callback) {
+      try {
+        const response = await fetch("http://localhost:3001/proxy/bee-auth", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ uid: "simple-form-user" }),
+        });
+        callback(await response.json());
+      } catch (err) {
+        console.error("Auth failed:", err);
+      }
+    }
+
+    function initBee(token) {
+      BeePlugin.create(token, beeConfig, instance => {
+        bee = instance;
+        bee.start({});
+      });
+    }
+
+    getBeeToken(initBee);
+  </script>
+</body>
+
+</html>

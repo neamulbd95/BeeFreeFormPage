@@ -1,0 +1,1582 @@
+{
+	"page": {
+		"body": {
+			"container": {
+				"style": {
+					"background-color": "#FFFFFF"
+				}
+			},
+			"content": {
+				"computedStyle": {
+					"linkColor": "#0068A5",
+					"messageBackgroundColor": "transparent",
+					"messageWidth": "562px"
+				},
+				"style": {
+					"color": "#000000",
+					"font-family": "Arial, Helvetica Neue, Helvetica, sans-serif"
+				}
+			},
+			"webFonts": []
+		},
+		"description": "",
+		"rows": [
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p><a href=\"#\" target=\"_blank\"><span>View in browser</span></a></p>",
+										"style": {
+											"color": "#FFFFFF",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "12px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "150%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "8f707b9b-7a95-4387-9891-0959be1d6e7b"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "21px",
+							"padding-left": "60px",
+							"padding-right": "60px",
+							"padding-top": "22px"
+						},
+						"uuid": "861ed22e-3a14-41ad-b597-bd3c2b0aece4"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "54c0dc8b-9224-44b6-8d5a-eaa563ff9e6b"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 4,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "150px"
+									},
+									"image": {
+										"alt": "",
+										"height": "44px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZ3d3cuYW5kb21vbmV5LmNvbSUyRg==&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2398",
+										"prefix": "",
+										"src": "https://andomoney.imgus11.com/public//d7dd232a77df187d6b8e0e48756e2506.png?r=868092789",
+										"target": "_blank",
+										"width": "150px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "a07adc5b-fd2a-42df-a3e6-48f1ea9c4600"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "30px",
+							"padding-left": "15px",
+							"padding-right": "0px",
+							"padding-top": "21px"
+						},
+						"uuid": "442c808f-6b89-4636-90d0-dea28c7a3020"
+					},
+					{
+						"grid-columns": 6,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"spacer": {
+										"style": {
+											"background-color": "#FFFFFF",
+											"height": "20px"
+										}
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-spacer",
+								"uuid": "14281417-af6e-4805-a45b-dca05d9b4cfb"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "30px",
+							"padding-left": "0px",
+							"padding-right": "0px",
+							"padding-top": "21px"
+						},
+						"uuid": "e51659b5-34e5-4b91-9541-3d9564e721b0"
+					},
+					{
+						"grid-columns": 2,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#000000"
+										},
+										"html": "<p><a href=\"April 22 2021\" target=\"_blank\" style=\"text-decoration: none\">April 22 2021</a></p>",
+										"style": {
+											"color": "#000000",
+											"direction": "ltr",
+											"font-family": "Arial, sans-serif",
+											"font-size": "16px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "120%",
+											"text-align": "-webkit-right"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "13px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "1a722feb-28ed-49e8-b812-da2c87a38599"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "30px",
+							"padding-left": "0px",
+							"padding-right": "7px",
+							"padding-top": "21px"
+						},
+						"uuid": "a376dbc8-42d3-40b6-9f01-988d12ae5931"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "26be6fe9-21cf-44e6-ad0f-aaa30d6be225"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "545px"
+									},
+									"image": {
+										"alt": "",
+										"height": "372.406px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZhcHAuYW5kb21vbmV5LmNvbSUyRiUyMyUyMSUyRmxvZ2lu&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2405",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/spinning-globe-email-hero.gif?r=1041674147",
+										"target": "_blank",
+										"width": "545px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "21px",
+										"padding-left": "12px",
+										"padding-right": "5px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "b9c048b1-7d0d-43a6-8025-a232b7a315a8"
+							},
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Mobile Banking for a More Sustainable Tomorrow<br/></p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "Tropiline, Georgia, 'Times New Roman', Times, serif",
+											"font-size": "38px",
+											"font-weight": "500",
+											"letter-spacing": "0px",
+											"line-height": "120%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "14px",
+										"padding-left": "60px",
+										"padding-right": "60px",
+										"padding-top": "21px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "9ba8e9fa-02bf-4c0c-ab3e-6f357c741717"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "0px",
+							"padding-left": "0px",
+							"padding-right": "0px",
+							"padding-top": "30px"
+						},
+						"uuid": "3038117d-7213-4830-ac98-6ad7e179d23d"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "c14b45af-5dcd-45eb-b6a7-2280f28d4e09"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Still thinking about opening an Ando account? Discover how everyday banking can be a eco-friendly force for good.\n                          </p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "18px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "180%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "18px",
+										"padding-left": "7px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "85e8108b-fbc9-4764-bf8c-b3bd99c6110e"
+							},
+							{
+								"descriptor": {
+									"button": {
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZhcHAuYW5kb21vbmV5LmNvbSUyRiUyMyUyMSUyRmxvZ2lu&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2405",
+										"label": "<div style=\"\" data-mce-style=\"\"><p style=\"word-break:break-word;\">Complete My Setup</p></div>",
+										"style": {
+											"background-color": "#EFCE60",
+											"border-bottom": "0px solid #000000",
+											"border-left": "0px solid #000000",
+											"border-radius": "32px",
+											"border-right": "0px solid #000000",
+											"border-top": "0px solid #000000",
+											"color": "#000000",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "14px",
+											"font-weight": "700",
+											"letter-spacing": "0px",
+											"line-height": "200%",
+											"padding-bottom": "19px",
+											"padding-left": "20px",
+											"padding-right": "20px",
+											"padding-top": "19px",
+											"width": "auto"
+										},
+										"target": "_self"
+									},
+									"computedStyle": {
+										"height": "54px",
+										"width": "170px"
+									},
+									"style": {
+										"padding-bottom": "53px",
+										"padding-left": "60px",
+										"padding-right": "60px",
+										"padding-top": "18px",
+										"text-align": "-webkit-center"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-button",
+								"uuid": "12bccc72-a1fa-4d4c-bb9a-a61704c711c1"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "0px",
+							"padding-left": "0px",
+							"padding-right": "0px",
+							"padding-top": "14px"
+						},
+						"uuid": "b5c5b830-ac0b-4c23-9b9f-4a28c98f0900"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "20e8c321-3467-48c7-a0d7-d22a40a306d2"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Banking With Purpose<br/></p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "Tropiline, Georgia, 'Times New Roman', Times, serif",
+											"font-size": "32px",
+											"font-weight": "500",
+											"letter-spacing": "0px",
+											"line-height": "150%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "b11ce3da-a569-423e-9337-831a30eafa40"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "23px",
+							"padding-left": "60px",
+							"padding-right": "60px",
+							"padding-top": "53px"
+						},
+						"uuid": "64a29fdc-6732-403c-8630-39d67d75f42e"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "794c1c46-3ac0-4ade-b9a9-3a7139390742"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 3,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "110px"
+									},
+									"image": {
+										"alt": "",
+										"height": "110px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZhcHAuYW5kb21vbmV5LmNvbSUyRiUyMyUyMSUyRmxvZ2lu&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2405",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/html_images_/icon_no_carbon.png?r=558038507",
+										"target": "_blank",
+										"width": "110px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "cb91ea47-496d-43e8-913b-65bcdfed2bb4"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "26px",
+							"padding-left": "0px",
+							"padding-right": "50px",
+							"padding-top": "23px"
+						},
+						"uuid": "5864ad54-05fc-4060-94f5-3dc21756a206"
+					},
+					{
+						"grid-columns": 9,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Banking for Balance</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "20px",
+											"font-weight": "700",
+											"letter-spacing": "0px",
+											"line-height": "120%",
+											"text-align": "-webkit-left"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "b1253790-b147-4ef3-a171-9a80384d8d06"
+							},
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Zero monthly fees, no minimum balance, and a huge fee-free ATM network¹ means sustainable banking is more sustainable for everyone.</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "16px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "150%",
+											"text-align": "-webkit-left"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "4px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "0a5c7b86-7faf-440e-98a9-dd7e7c73e786"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "26px",
+							"padding-left": "50px",
+							"padding-right": "17px",
+							"padding-top": "23px"
+						},
+						"uuid": "4a7b3b0b-3668-4544-940a-00740cc62530"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "4efffe5c-205c-4c3c-90d4-5a68f9cb177c"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 3,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "110px"
+									},
+									"image": {
+										"alt": "",
+										"height": "95.0938px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZhcHAuYW5kb21vbmV5LmNvbSUyRiUyMyUyMSUyRmxvZ2lu&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2405",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/html_images_/icon_money_fly.png?r=2142250612",
+										"target": "_blank",
+										"width": "110px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "5df6d6bd-feb8-4906-b624-abce164fc4e9"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "27px",
+							"padding-left": "0px",
+							"padding-right": "50px",
+							"padding-top": "26px"
+						},
+						"uuid": "5de2cd45-fc6d-4cf1-a98a-679f44391e5a"
+					},
+					{
+						"grid-columns": 9,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Banking with Clarity</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "20px",
+											"font-weight": "700",
+											"letter-spacing": "0px",
+											"line-height": "120%",
+											"text-align": "-webkit-left"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "19462750-82ce-4172-97e5-67d8ccfa0e57"
+							},
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Most banks use your deposits to fund fossil fuels. ²Not Ando. Our investments only support green initiatives, giving you unprecedented insights into how you’re helping to save the planet.</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "16px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "150%",
+											"text-align": "-webkit-left"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "4px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "b2bf481e-c1b1-4f09-9f00-b3b1c595ee26"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "27px",
+							"padding-left": "50px",
+							"padding-right": "4px",
+							"padding-top": "26px"
+						},
+						"uuid": "acc8c22f-3e08-47ee-b8e8-d166714a301f"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "0654ba5d-560e-4385-bfbc-25651d26922c"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 3,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "88px"
+									},
+									"image": {
+										"alt": "",
+										"height": "118.188px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZhcHAuYW5kb21vbmV5LmNvbSUyRiUyMyUyMSUyRmxvZ2lu&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2405",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/html_images_/icon_fdic_shield.png?r=1132411367",
+										"target": "_blank",
+										"width": "88px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "b29c1c55-277a-443b-a5d2-74b552f7dc4b"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "15px",
+							"padding-left": "0px",
+							"padding-right": "60px",
+							"padding-top": "27px"
+						},
+						"uuid": "82d900d0-4810-465e-95c9-f8a8d9a3231d"
+					},
+					{
+						"grid-columns": 9,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Bank with Confidence</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "20px",
+											"font-weight": "700",
+											"letter-spacing": "0px",
+											"line-height": "120%",
+											"text-align": "-webkit-left"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "008ff07a-41b8-4e6d-ae00-d100bb2f9a18"
+							},
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Your deposits are FDIC insured up to $250,000 through Community Federal Savings Bank, member FDIC.</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "16px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "150%",
+											"text-align": "-webkit-left"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "4px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "71848e74-8bd0-48d8-8685-cc7fc97639ec"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "15px",
+							"padding-left": "60px",
+							"padding-right": "18px",
+							"padding-top": "27px"
+						},
+						"uuid": "6fe9978a-817e-4acf-aef7-2ae689e7e765"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "2512542b-c535-46c2-acce-c1ee78d1d933"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"button": {
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZhcHAuYW5kb21vbmV5LmNvbSUyRiUyMyUyMSUyRmxvZ2lu&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2405",
+										"label": "<div style=\"\" data-mce-style=\"\"><p style=\"word-break:break-word;\">Open My Account</p></div>",
+										"style": {
+											"background-color": "#EFCE60",
+											"border-bottom": "0px solid #000000",
+											"border-left": "0px solid #000000",
+											"border-radius": "32px",
+											"border-right": "0px solid #000000",
+											"border-top": "0px solid #000000",
+											"color": "#000000",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "14px",
+											"font-weight": "700",
+											"letter-spacing": "0px",
+											"line-height": "200%",
+											"padding-bottom": "19px",
+											"padding-left": "25px",
+											"padding-right": "25px",
+											"padding-top": "19px",
+											"width": "auto"
+										},
+										"target": "_self"
+									},
+									"computedStyle": {
+										"height": "54px",
+										"width": "170px"
+									},
+									"style": {
+										"padding-bottom": "43px",
+										"padding-left": "60px",
+										"padding-right": "60px",
+										"padding-top": "0px",
+										"text-align": "-webkit-center"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-button",
+								"uuid": "5e587a1c-a9ec-4769-bb91-77e93e6064f5"
+							},
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "75px"
+									},
+									"image": {
+										"alt": "",
+										"height": "22px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZ3d3cuYW5kb21vbmV5LmNvbSUyRg==&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2398",
+										"prefix": "",
+										"src": "https://andomoney.imgus11.com/public//d7dd232a77df187d6b8e0e48756e2506.png?r=868092789",
+										"target": "_blank",
+										"width": "75px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "14px",
+										"padding-left": "60px",
+										"padding-right": "60px",
+										"padding-top": "43px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "482962a5-693c-4249-bb79-2d36bcd23cde"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "0px",
+							"padding-left": "0px",
+							"padding-right": "0px",
+							"padding-top": "15px"
+						},
+						"uuid": "705d6bcf-df67-404b-8636-e0067ec04bb7"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "8c50be9c-41c9-4a84-84fa-17da64951c91"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>© 2021 Ando Inc. All Rights Reserved.<br/>\n                            Ando Inc., 8996 Miramar Road, Suite 310, San Diego, CA 92126, United States</p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "13px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "150%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "3085b24a-8579-47e1-aaf4-a1c289939364"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "19px",
+							"padding-left": "56px",
+							"padding-right": "49px",
+							"padding-top": "14px"
+						},
+						"uuid": "ba96034a-672e-48d5-bb81-9e40089fc85b"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "7b4b8c5a-7d72-4129-893e-981eb69e48db"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 4,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "33px"
+									},
+									"image": {
+										"alt": "",
+										"height": "33px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZ3d3cuZmFjZWJvb2suY29tJTJGYW5kby5tb25leQ==&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2399",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/updated_ando/fb_grey.png?r=1464504408",
+										"target": "_blank",
+										"width": "33px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "acf0d5a7-5b52-4442-be79-c2fb58f19e29"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "22px",
+							"padding-left": "60px",
+							"padding-right": "11px",
+							"padding-top": "19px"
+						},
+						"uuid": "d9d52165-f050-4da7-905e-e01d1d2cd369"
+					},
+					{
+						"grid-columns": 3,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "33px"
+									},
+									"image": {
+										"alt": "",
+										"height": "33px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZ3d3cuaW5zdGFncmFtLmNvbSUyRmFuZG8ubW9uZXklMkY=&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2400",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/updated_ando/iconfinder_instagram_1217174.png?r=1667089082",
+										"target": "_blank",
+										"width": "33px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "15784f40-516f-4b15-8a3a-09a5aaa9d386"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "22px",
+							"padding-left": "11px",
+							"padding-right": "11px",
+							"padding-top": "19px"
+						},
+						"uuid": "724809fa-69bb-42b5-856b-fd7f80974c37"
+					},
+					{
+						"grid-columns": 5,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"class": "center fixedwidth",
+										"width": "33px"
+									},
+									"image": {
+										"alt": "",
+										"height": "33px",
+										"href": "https://updates.andomoney.com/Prod/link-tracker?redirectUrl=aHR0cHMlM0ElMkYlMkZ0d2l0dGVyLmNvbSUyRmFuZG9fbW9uZXk=&a=476537907&account=andomoney%2Eactivehosted%2Ecom&email=%2Bra1JSeoBI356Y5%2FM1XmyND8bjJpCHl33qvDqYu5emM%3D&s=2ad87194132d03c99740e0ec5a8c1ada&i=311A343A5A2401",
+										"prefix": "",
+										"src": "https://ac-image.s3.amazonaws.com/1/6/4/8/2/1/7/home/Megha%40elevated.com/updated_ando/iconfinder_twitter_1217163.png?r=2104098364",
+										"target": "_blank",
+										"width": "33px"
+									},
+									"style": {
+										"border-radius": "0px",
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px",
+										"width": "100%"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-image",
+								"uuid": "847cf801-17eb-49d7-ba70-337e15edb1f4"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "22px",
+							"padding-left": "11px",
+							"padding-right": "60px",
+							"padding-top": "19px"
+						},
+						"uuid": "7af1fe60-ddcb-4f7a-a5b8-949d00359d39"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "5305e1b6-540d-446f-8135-2147b3c525ad"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>Banking services provided by Community Federal Savings Bank, member FDIC.<br/>\n                            The Ando Visa® Debit Card is issued by Community Federal Savings Bank<br/>\n                            pursuant to a license from Visa U.S.A. Inc. and may be used everywhere<br/>\n                            Visa <span>debit cards are accepted.</span></p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "13px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "180%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "24px",
+										"padding-left": "54px",
+										"padding-right": "46px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "f45cdfd1-88b3-41f9-b1b1-f3acf3751e9c"
+							},
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#FFFFFF"
+										},
+										"html": "<p>¹Fee-free withdrawals MoneyPass® ATMs. Out-of-Network cash withdrawal fees apply.<br/> Third-party and cash deposit fees may apply. ²Global Banks, Led by JPMorgan Chase, <br/>Invested $2.7 Trillion in Fossil Fuels Since Paris Climate Pact\n                            <br/><br/>*Global Warming Is Driving Polar Bears Toward Extinction, Researchers Say\n                          </p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "13px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "180%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "17px",
+										"padding-left": "35px",
+										"padding-right": "28px",
+										"padding-top": "24px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "209a9035-259e-4b4a-8dc6-99534b07f09c"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "0px",
+							"padding-left": "0px",
+							"padding-right": "0px",
+							"padding-top": "22px"
+						},
+						"uuid": "c1c67ae7-1c0e-4955-9f2f-110a56a733db"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "481f43e9-8fcd-4f01-8525-9c6674fc56de"
+			},
+			{
+				"columns": [
+					{
+						"grid-columns": 12,
+						"modules": [
+							{
+								"descriptor": {
+									"computedStyle": {
+										"hideContentOnDesktop": false,
+										"hideContentOnMobile": false
+									},
+									"paragraph": {
+										"computedStyle": {
+											"linkColor": "#3A3A3A"
+										},
+										"html": "<p><a href=\"#\" target=\"_blank\"><span>Unsubscribe</span></a>   |   <a href=\"#\" target=\"_blank\"><span>Send to Friend</span></a></p>",
+										"style": {
+											"color": "#3A3A3A",
+											"direction": "ltr",
+											"font-family": "'GT Walsheim Pro', Helvetica, Arial, sans-serif",
+											"font-size": "13px",
+											"font-weight": "400",
+											"letter-spacing": "0px",
+											"line-height": "180%",
+											"text-align": "-webkit-center"
+										}
+									},
+									"style": {
+										"padding-bottom": "0px",
+										"padding-left": "0px",
+										"padding-right": "0px",
+										"padding-top": "0px"
+									}
+								},
+								"locked": false,
+								"type": "mailup-bee-newsletter-modules-paragraph",
+								"uuid": "76a9e7a3-6b10-4f96-bb18-6bb2d82078f4"
+							}
+						],
+						"style": {
+							"background-color": "#FFFFFF",
+							"padding-bottom": "0px",
+							"padding-left": "60px",
+							"padding-right": "60px",
+							"padding-top": "17px"
+						},
+						"uuid": "8d3b5490-5aa1-40c9-b118-c4dbc3467c4d"
+					}
+				],
+				"container": {
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat"
+					}
+				},
+				"content": {
+					"computedStyle": {
+						"hideContentOnDesktop": false,
+						"hideContentOnMobile": false,
+						"rowColStackOnMobile": true,
+						"rowReverseColStackOnMobile": false,
+						"verticalAlign": "top"
+					},
+					"style": {
+						"background-color": "transparent",
+						"background-image": "none",
+						"background-position": "top left",
+						"background-repeat": "no-repeat",
+						"color": "#000000",
+						"width": "500px"
+					}
+				},
+				"empty": false,
+				"locked": false,
+				"synced": false,
+				"type": "",
+				"uuid": "2269816a-b23e-4b3a-b04b-85e9d9b01f80"
+			}
+		],
+		"template": {
+			"version": "2.0.0"
+		},
+		"title": ""
+	}
+}
