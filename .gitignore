@@ -22,3 +22,6 @@ build/
 *.log
 *.tmp
 *.swp
+
+package-lock.json
+yarn.lock

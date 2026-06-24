@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Form Manager</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F1F5F9;
+      color: #1E293B;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── App Header ── */
+    .app-header {
+      background: white;
+      border-bottom: 1px solid #E2E8F0;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+    .app-header-left { display: flex; align-items: center; gap: 10px; }
+    .app-header h1 { font-size: 16px; font-weight: 700; color: #1E293B; }
+    .header-pill {
+      font-size: 10px; font-weight: 600; padding: 2px 8px;
+      background: #EEF2FF; color: #6366F1; border-radius: 10px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* ── Layout ── */
+    .app-body { display: flex; flex: 1; overflow: hidden; }
+
+    /* ── Forms Sidebar ── */
+    .forms-sidebar {
+      width: 300px;
+      flex-shrink: 0;
+      background: white;
+      border-right: 1px solid #E2E8F0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .sidebar-top {
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #94A3B8; margin-bottom: 10px;
+    }
+    .search-wrap { position: relative; }
+    .search-icon {
+      position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+      font-size: 13px; color: #94A3B8; pointer-events: none;
+    }
+    .search-input {
+      width: 100%; padding: 8px 10px 8px 32px;
+      border: 1px solid #E2E8F0; border-radius: 6px;
+      font-size: 13px; color: #374151; outline: none;
+      font-family: 'Inter', sans-serif; transition: border-color 0.15s;
+    }
+    .search-input:focus { border-color: #818CF8; box-shadow: 0 0 0 3px rgba(129,140,248,0.1); }
+
+    .forms-list { flex: 1; overflow-y: auto; padding: 8px; }
+
+    .form-item {
+      border: 1.5px solid #E2E8F0; border-radius: 8px;
+      padding: 11px 13px; margin-bottom: 5px;
+      cursor: pointer; transition: all 0.12s; background: white;
+    }
+    .form-item:hover { border-color: #CBD5E1; background: #F8FAFC; }
+    .form-item.active { border-color: #6366F1; background: #EEF2FF; }
+
+    .form-item-row { display: flex; align-items: center; justify-content: space-between; }
+    .form-item-name {
+      font-size: 13px; font-weight: 600; color: #1E293B;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      max-width: 165px;
+    }
+    .form-item.active .form-item-name { color: #4F46E5; }
+    .form-item-meta { font-size: 11px; color: #94A3B8; margin-top: 3px; }
+    .form-item.active .form-item-meta { color: #818CF8; }
+
+    .edit-chip {
+      padding: 3px 9px; background: none; border: 1px solid #E2E8F0; border-radius: 4px;
+      font-size: 11px; font-weight: 500; color: #64748B; cursor: pointer;
+      transition: all 0.12s; font-family: 'Inter', sans-serif; flex-shrink: 0;
+    }
+    .edit-chip:hover { border-color: #818CF8; color: #4F46E5; background: white; }
+    .form-item.active .edit-chip { border-color: #818CF8; color: #4F46E5; background: white; }
+
+    .empty-list {
+      padding: 36px 16px; text-align: center; color: #94A3B8;
+    }
+    .empty-list .icon { font-size: 28px; margin-bottom: 8px; }
+    .empty-list p { font-size: 13px; line-height: 1.6; }
+
+    .sidebar-bottom { padding: 10px 14px; border-top: 1px solid #E2E8F0; display: flex; gap: 6px; }
+
+    /* ── Editor Area ── */
+    .editor-area { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+
+    .editor-empty {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px; color: #94A3B8;
+    }
+    .editor-empty .icon { font-size: 44px; }
+    .editor-empty h2 { font-size: 15px; font-weight: 600; color: #475569; }
+    .editor-empty p { font-size: 13px; }
+
+    .form-editor { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+    .editor-topbar {
+      background: white; border-bottom: 1px solid #E2E8F0;
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .editor-topbar-left h2 { font-size: 15px; font-weight: 600; color: #1E293B; }
+    .editor-topbar-left p { font-size: 12px; color: #94A3B8; margin-top: 2px; }
+    .editor-topbar-right { display: flex; gap: 8px; align-items: center; }
+
+    .editor-scroll {
+      flex: 1; overflow-y: auto;
+      padding: 20px 24px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: white; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px;
+    }
+    .card-title {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #94A3B8; margin-bottom: 14px;
+    }
+
+    /* Form meta */
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .meta-field label { font-size: 11px; font-weight: 600; color: #64748B; display: block; margin-bottom: 5px; }
+    .meta-field input {
+      width: 100%; padding: 8px 11px;
+      border: 1px solid #E2E8F0; border-radius: 6px;
+      font-size: 13px; color: #1E293B; outline: none;
+      transition: border-color 0.15s; font-family: 'Inter', sans-serif;
+    }
+    .meta-field input:focus { border-color: #818CF8; box-shadow: 0 0 0 3px rgba(129,140,248,0.12); }
+
+    /* Field type palette */
+    .palette-groups { display: flex; flex-direction: column; gap: 10px; }
+    .palette-row { display: flex; align-items: center; gap: 8px; }
+    .palette-row-label {
+      font-size: 10px; font-weight: 600; color: #CBD5E1;
+      width: 50px; flex-shrink: 0;
+    }
+    .chips { display: flex; gap: 5px; flex-wrap: wrap; }
+    .chip {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 11px; border: 1px solid #E2E8F0; border-radius: 20px;
+      background: white; cursor: pointer; font-size: 12px; font-weight: 500; color: #374151;
+      transition: all 0.12s; font-family: 'Inter', sans-serif; white-space: nowrap;
+    }
+    .chip:hover { border-color: #818CF8; color: #4F46E5; background: #EEF2FF; }
+    .chip.submit-chip:hover { border-color: #34D399; color: #059669; background: #ECFDF5; }
+    .chip-icon { font-size: 11px; font-weight: 700; }
+
+    /* Fields section */
+    .fields-section { display: flex; flex-direction: column; gap: 8px; }
+    .fields-section-header {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .section-label {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #94A3B8;
+    }
+    .count-badge {
+      font-size: 10px; font-weight: 600; padding: 2px 7px;
+      background: #F1F5F9; color: #64748B; border-radius: 10px;
+    }
+
+    .fields-empty {
+      background: white; border: 2px dashed #CBD5E1; border-radius: 8px;
+      padding: 36px 20px; text-align: center;
+    }
+    .fields-empty .icon { font-size: 28px; margin-bottom: 8px; }
+    .fields-empty p { font-size: 13px; color: #94A3B8; }
+
+    /* ── Field Cards ── */
+    .field-card {
+      background: white; border: 1px solid #E2E8F0; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04); transition: border-color 0.15s;
+    }
+    .field-card:hover { border-color: #CBD5E1; }
+
+    .card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 12px; background: #F8FAFC; border-bottom: 1px solid #F1F5F9;
+    }
+    .type-badge {
+      font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .type-text, .type-password { background: #EEF2FF; color: #6366F1; }
+    .type-email                { background: #FEF3C7; color: #D97706; }
+    .type-number               { background: #E0F2FE; color: #0284C7; }
+    .type-textarea             { background: #F0FDF4; color: #16A34A; }
+    .type-date                 { background: #CCFBF1; color: #0D9488; }
+    .type-select, .type-radio  { background: #FDF4FF; color: #9333EA; }
+    .type-submit               { background: #ECFDF5; color: #059669; }
+
+    .card-actions { display: flex; gap: 3px; }
+    .action-btn {
+      background: white; border: 1px solid #E2E8F0; border-radius: 5px;
+      padding: 3px 8px; cursor: pointer; font-size: 12px; color: #64748B;
+      transition: all 0.12s; line-height: 1.5; font-family: 'Inter', sans-serif;
+    }
+    .action-btn:hover { border-color: #818CF8; color: #4F46E5; }
+    .action-btn:disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+    .action-btn.delete:hover { border-color: #FCA5A5; color: #EF4444; background: #FEF2F2; }
+
+    .card-body { padding: 13px; display: flex; flex-direction: column; gap: 10px; }
+
+    .config-row { display: flex; flex-direction: column; gap: 4px; }
+    .config-row > label {
+      font-size: 10px; font-weight: 700; color: #64748B;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .config-row input[type="text"] {
+      padding: 7px 10px; border: 1px solid #E2E8F0; border-radius: 5px;
+      font-size: 13px; color: #1E293B; outline: none; transition: border-color 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .config-row input[type="text"]:focus { border-color: #818CF8; box-shadow: 0 0 0 3px rgba(129,140,248,0.1); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .checkbox-row { flex-direction: row !important; align-items: center; }
+    .checkbox-row label {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: #374151; cursor: pointer;
+      font-weight: 400 !important; text-transform: none !important; letter-spacing: 0 !important;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 14px; height: 14px; accent-color: #6366F1; cursor: pointer;
+    }
+
+    .options-section { border-top: 1px solid #F1F5F9; padding-top: 10px; }
+    .options-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;
+    }
+    .options-header span {
+      font-size: 10px; font-weight: 700; color: #64748B;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .add-option-btn {
+      font-size: 11px; font-weight: 500; padding: 3px 9px;
+      background: white; border: 1px solid #818CF8; color: #6366F1;
+      border-radius: 4px; cursor: pointer; transition: background 0.12s;
+      font-family: 'Inter', sans-serif;
+    }
+    .add-option-btn:hover { background: #EEF2FF; }
+
+    .options-list { display: flex; flex-direction: column; gap: 5px; }
+    .option-row { display: flex; gap: 5px; align-items: center; }
+    .drag-handle { color: #CBD5E1; font-size: 14px; user-select: none; }
+    .option-input {
+      flex: 1; padding: 5px 9px; border: 1px solid #E2E8F0; border-radius: 5px;
+      font-size: 12px; color: #374151; outline: none; font-family: 'Inter', sans-serif;
+    }
+    .option-input:focus { border-color: #818CF8; }
+    .remove-opt-btn {
+      background: none; border: none; color: #CBD5E1;
+      cursor: pointer; font-size: 17px; padding: 0 3px; line-height: 1;
+      transition: color 0.12s;
+    }
+    .remove-opt-btn:hover { color: #EF4444; }
+
+    /* ── Buttons ── */
+    .btn {
+      padding: 8px 18px; border-radius: 7px; font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all 0.12s; border: none;
+      font-family: 'Inter', sans-serif; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-secondary { background: white; border: 1px solid #E2E8F0; color: #64748B; }
+    .btn-secondary:hover { border-color: #94A3B8; color: #374151; }
+    .btn-primary { background: #6366F1; color: white; }
+    .btn-primary:hover { background: #4F46E5; }
+    .btn-primary:disabled { background: #A5B4FC; cursor: not-allowed; }
+    .btn-sm { padding: 6px 12px; font-size: 12px; }
+    .btn-new {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; background: #6366F1; color: white; border: none; border-radius: 7px;
+      font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.12s;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-new:hover { background: #4F46E5; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      display: flex; flex-direction: column; gap: 8px; pointer-events: none;
+    }
+    .toast-item {
+      padding: 11px 16px; border-radius: 8px; font-size: 13px; font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12); animation: toastIn 0.2s ease;
+      pointer-events: auto;
+    }
+    .toast-success { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+    .toast-error   { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+    @keyframes toastIn {
+      from { transform: translateX(16px); opacity: 0; }
+      to   { transform: translateX(0);    opacity: 1; }
+    }
+
+    /* Spinner */
+    .spinner {
+      display: inline-block; width: 12px; height: 12px;
+      border: 2px solid rgba(255,255,255,0.35); border-top-color: white;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+
+    /* Bottom spacer in scroll */
+    .scroll-spacer { height: 24px; flex-shrink: 0; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── App Header ── -->
+  <header class="app-header">
+    <div class="app-header-left">
+      <h1>Form Manager</h1>
+      <span class="header-pill">BeeFree SDK</span>
+    </div>
+    <button class="btn-new" onclick="startNewForm()">
+      <span style="font-size:15px;line-height:1">+</span> New Form
+    </button>
+  </header>
+
+  <div class="app-body">
+
+    <!-- ── Left: Forms List ── -->
+    <aside class="forms-sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-section-label">Saved Forms</div>
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input class="search-input" type="text" id="search-input"
+            placeholder="Search forms…" oninput="filterForms()" />
+        </div>
+      </div>
+
+      <div class="forms-list" id="forms-list">
+        <div class="empty-list">
+          <div class="icon">⏳</div>
+          <p>Loading forms…</p>
+        </div>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="btn btn-secondary btn-sm" style="flex:1" onclick="loadForms()">↻ Refresh</button>
+      </div>
+    </aside>
+
+    <!-- ── Right: Editor ── -->
+    <main class="editor-area">
+
+      <!-- Empty state -->
+      <div class="editor-empty" id="editor-empty">
+        <div class="icon">🎨</div>
+        <h2>No form selected</h2>
+        <p>Choose a form from the list to edit, or create a new one.</p>
+        <button class="btn btn-primary" style="margin-top:8px" onclick="startNewForm()">
+          + New Form
+        </button>
+      </div>
+
+      <!-- Form editor (hidden until active) -->
+      <div class="form-editor" id="form-editor" style="display:none">
+
+        <div class="editor-topbar">
+          <div class="editor-topbar-left">
+            <h2 id="topbar-title">New Form</h2>
+            <p id="topbar-subtitle">Add fields and save to register this form.</p>
+          </div>
+          <div class="editor-topbar-right">
+            <button class="btn btn-secondary" onclick="discardChanges()">Discard</button>
+            <button class="btn btn-primary" id="save-btn" onclick="saveForm()">Save Form</button>
+          </div>
+        </div>
+
+        <div class="editor-scroll">
+
+          <!-- Form meta -->
+          <div class="card">
+            <div class="card-title">Form Settings</div>
+            <div class="meta-grid">
+              <div class="meta-field">
+                <label>Form Title *</label>
+                <input type="text" id="form-title" placeholder="e.g. Contact Us" />
+              </div>
+              <div class="meta-field">
+                <label>Description</label>
+                <input type="text" id="form-description" placeholder="Short description" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Field palette -->
+          <div class="card">
+            <div class="card-title">Add Field</div>
+            <div class="palette-groups">
+              <div class="palette-row">
+                <span class="palette-row-label">Basic</span>
+                <div class="chips">
+                  <button class="chip" onclick="addField('text')">
+                    <span class="chip-icon">T</span> Text
+                  </button>
+                  <button class="chip" onclick="addField('email')">
+                    <span class="chip-icon">@</span> Email
+                  </button>
+                  <button class="chip" onclick="addField('number')">
+                    <span class="chip-icon">#</span> Number
+                  </button>
+                  <button class="chip" onclick="addField('textarea')">
+                    <span class="chip-icon">¶</span> Long Text
+                  </button>
+                  <button class="chip" onclick="addField('password')">
+                    <span class="chip-icon">••</span> Password
+                  </button>
+                  <button class="chip" onclick="addField('date')">
+                    <span class="chip-icon">📅</span> Date
+                  </button>
+                </div>
+              </div>
+              <div class="palette-row">
+                <span class="palette-row-label">Choice</span>
+                <div class="chips">
+                  <button class="chip" onclick="addField('select')">
+                    <span class="chip-icon">▾</span> Dropdown
+                  </button>
+                  <button class="chip" onclick="addField('radio')">
+                    <span class="chip-icon">◉</span> Radio
+                  </button>
+                </div>
+              </div>
+              <div class="palette-row">
+                <span class="palette-row-label">Action</span>
+                <div class="chips">
+                  <button class="chip submit-chip" onclick="addField('submit')">
+                    <span class="chip-icon">→</span> Submit Button
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fields -->
+          <div class="fields-section">
+            <div class="fields-section-header">
+              <span class="section-label">Form Fields</span>
+              <span class="count-badge" id="count-badge">0 fields</span>
+            </div>
+
+            <div class="fields-empty" id="fields-empty">
+              <div class="icon">📋</div>
+              <p>Add fields using the palette above</p>
+            </div>
+
+            <div id="fields-container"></div>
+          </div>
+
+          <div class="scroll-spacer"></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+  <script>
+    // ─── State ────────────────────────────────────────────────────────────────
+    let allForms      = [];
+    let formFields    = [];
+    let currentFormId = null;
+
+    // ─── Field defaults ───────────────────────────────────────────────────────
+    const DEFAULTS = {
+      text:     { label: 'Text Input',      attributes: { required: false, placeholder: '' } },
+      email:    { label: 'Email Address',   attributes: { required: false, placeholder: '' } },
+      number:   { label: 'Number',          attributes: { required: false, placeholder: '' } },
+      textarea: { label: 'Message',         attributes: { required: false, placeholder: '' } },
+      password: { label: 'Password',        attributes: { required: false, placeholder: '' } },
+      date:     { label: 'Date',            attributes: { required: false } },
+      select: {
+        label: 'Choose an option', attributes: { required: false },
+        options: [
+          { type: 'option', label: 'Option 1', value: 'option_1' },
+          { type: 'option', label: 'Option 2', value: 'option_2' },
+        ]
+      },
+      radio: {
+        label: 'Choose one', attributes: { required: false },
+        options: [
+          { type: 'option', label: 'Option A', value: 'option_a' },
+          { type: 'option', label: 'Option B', value: 'option_b' },
+        ]
+      },
+      submit: { label: '', attributes: { value: 'Submit', name: 'submit_button' } },
+    };
+
+    // ─── Utils ────────────────────────────────────────────────────────────────
+    function uid(type) {
+      return type + '_' + Math.random().toString(36).slice(2, 7);
+    }
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function toast(msg, type = 'success') {
+      const el = document.createElement('div');
+      el.className = `toast-item toast-${type}`;
+      el.textContent = msg;
+      document.getElementById('toast').appendChild(el);
+      setTimeout(() => el.remove(), 3500);
+    }
+
+    // ─── Forms List ───────────────────────────────────────────────────────────
+    async function loadForms() {
+      try {
+        const res  = await fetch('http://localhost:3001/api/forms');
+        const data = await res.json();
+        allForms = data.forms || [];
+        renderList(allForms);
+      } catch {
+        document.getElementById('forms-list').innerHTML = `
+          <div class="empty-list">
+            <div class="icon">⚠️</div>
+            <p>Could not reach server.<br/>Is proxy-server.js running on port 3001?</p>
+          </div>`;
+      }
+    }
+
+    function filterForms() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      renderList(q ? allForms.filter(f => f.title.toLowerCase().includes(q)) : allForms);
+    }
+
+    function renderList(forms) {
+      const el = document.getElementById('forms-list');
+      if (!forms.length) {
+        el.innerHTML = `
+          <div class="empty-list">
+            <div class="icon">📭</div>
+            <p>No forms yet.<br/>Click <strong>New Form</strong> to get started.</p>
+          </div>`;
+        return;
+      }
+      el.innerHTML = forms.map(f => {
+        const visibleFields = (f.fieldMeta || []).filter(m => m.type !== 'hidden' && m.type !== 'submit').length;
+        const subs          = f.submissionCount || 0;
+        const isActive      = currentFormId === f.formId;
+        return `
+          <div class="form-item ${isActive ? 'active' : ''}" onclick="editForm('${f.formId}')">
+            <div class="form-item-row">
+              <span class="form-item-name">${esc(f.title)}</span>
+              <button class="edit-chip" onclick="event.stopPropagation(); editForm('${f.formId}')">Edit</button>
+            </div>
+            <div class="form-item-meta">
+              ${visibleFields} field${visibleFields !== 1 ? 's' : ''}
+              &nbsp;·&nbsp;
+              ${subs} submission${subs !== 1 ? 's' : ''}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // ─── Editor visibility ────────────────────────────────────────────────────
+    function showEditor(title, subtitle) {
+      document.getElementById('editor-empty').style.display = 'none';
+      document.getElementById('form-editor').style.display  = 'flex';
+      document.getElementById('topbar-title').textContent    = title;
+      document.getElementById('topbar-subtitle').textContent = subtitle;
+    }
+
+    function hideEditor() {
+      document.getElementById('editor-empty').style.display = 'flex';
+      document.getElementById('form-editor').style.display  = 'none';
+      currentFormId = null;
+      renderList(allForms);
+    }
+
+    // ─── Create / Edit ────────────────────────────────────────────────────────
+    function startNewForm() {
+      currentFormId = null;
+      formFields    = [];
+      document.getElementById('form-title').value       = '';
+      document.getElementById('form-description').value = '';
+      showEditor('New Form', 'Fill in the details and add fields, then click Save Form.');
+      renderFields();
+    }
+
+    async function editForm(formId) {
+      try {
+        const res  = await fetch(`http://localhost:3001/api/forms/${formId}`);
+        if (!res.ok) throw new Error();
+        const form = await res.json();
+
+        currentFormId = form.formId;
+        document.getElementById('form-title').value       = form.title || '';
+        document.getElementById('form-description').value = form.description || '';
+
+        // Restore full field definitions, falling back to fieldMeta if fieldDefs absent
+        const defs = form.fieldDefs && form.fieldDefs.length
+          ? form.fieldDefs
+          : (form.fieldMeta || []).map(m => ({ id: m.id, type: m.type, label: m.label, attributes: {} }));
+
+        formFields = defs.map(f => ({
+          id:         f.id,
+          type:       f.type,
+          label:      f.label || '',
+          attributes: { ...(f.attributes || {}) },
+          options:    f.options ? f.options.map(o => ({ ...o })) : undefined,
+        }));
+
+        const visibleCount = formFields.filter(f => f.type !== 'submit' && f.type !== 'hidden').length;
+        const subs         = form.submissionCount || 0;
+        showEditor(
+          `Editing: ${form.title || 'Untitled'}`,
+          `${visibleCount} field${visibleCount !== 1 ? 's' : ''} · ${subs} submission${subs !== 1 ? 's' : ''}`
+        );
+        renderFields();
+        renderList(allForms);
+      } catch {
+        toast('Could not load form — please try again.', 'error');
+      }
+    }
+
+    function discardChanges() {
+      hideEditor();
+    }
+
+    // ─── Field operations ─────────────────────────────────────────────────────
+    function addField(type) {
+      const d = DEFAULTS[type];
+      if (!d) return;
+      formFields.push({
+        id:         uid(type),
+        type,
+        label:      d.label,
+        attributes: JSON.parse(JSON.stringify(d.attributes)),
+        options:    d.options ? JSON.parse(JSON.stringify(d.options)) : undefined,
+      });
+      renderFields();
+    }
+
+    function removeField(id) {
+      formFields = formFields.filter(f => f.id !== id);
+      renderFields();
+    }
+
+    function moveField(id, dir) {
+      const i = formFields.findIndex(f => f.id === id);
+      const j = i + dir;
+      if (j < 0 || j >= formFields.length) return;
+      [formFields[i], formFields[j]] = [formFields[j], formFields[i]];
+      renderFields();
+    }
+
+    function setLabel(id, val) {
+      const f = formFields.find(f => f.id === id);
+      if (f) f.label = val;
+    }
+
+    function setAttr(id, key, val) {
+      const f = formFields.find(f => f.id === id);
+      if (f) { if (!f.attributes) f.attributes = {}; f.attributes[key] = val; }
+    }
+
+    function addOption(id) {
+      const f = formFields.find(f => f.id === id);
+      if (!f || !f.options) return;
+      const n = f.options.length + 1;
+      f.options.push({ type: 'option', label: 'Option ' + n, value: 'option_' + n });
+      renderFields();
+    }
+
+    function removeOption(id, idx) {
+      const f = formFields.find(f => f.id === id);
+      if (f && f.options) { f.options.splice(idx, 1); renderFields(); }
+    }
+
+    function updateOptionLabel(id, idx, val) {
+      const f = formFields.find(f => f.id === id);
+      if (f && f.options && f.options[idx]) {
+        f.options[idx].label = val;
+        f.options[idx].value = val.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+      }
+    }
+
+    // ─── Render fields ────────────────────────────────────────────────────────
+    function renderFields() {
+      const container = document.getElementById('fields-container');
+      const empty     = document.getElementById('fields-empty');
+      const badge     = document.getElementById('count-badge');
+
+      const visible = formFields.filter(f => f.type !== 'hidden').length;
+      badge.textContent = visible + (visible === 1 ? ' field' : ' fields');
+
+      if (formFields.length === 0) {
+        container.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      container.innerHTML = '';
+      formFields.forEach((field, i) => container.appendChild(buildCard(field, i)));
+    }
+
+    function buildCard(field, index) {
+      const isFirst    = index === 0;
+      const isLast     = index === formFields.length - 1;
+      const isSubmit   = field.type === 'submit';
+      const hasHolder  = ['text','email','number','textarea','password'].includes(field.type);
+      const hasOptions = field.type === 'select' || field.type === 'radio';
+
+      const optionsHtml = hasOptions ? `
+        <div class="options-section">
+          <div class="options-header">
+            <span>Options</span>
+            <button class="add-option-btn" onclick="addOption('${field.id}')">+ Add Option</button>
+          </div>
+          <div class="options-list">
+            ${(field.options || []).map((opt, i) => `
+              <div class="option-row">
+                <span class="drag-handle">⠿</span>
+                <input class="option-input" type="text" value="${esc(opt.label)}"
+                  oninput="updateOptionLabel('${field.id}', ${i}, this.value)" />
+                <button class="remove-opt-btn" onclick="removeOption('${field.id}', ${i})">×</button>
+              </div>`).join('')}
+          </div>
+        </div>` : '';
+
+      const bodyHtml = isSubmit
+        ? `<div class="config-row">
+             <label>Button Text</label>
+             <input type="text" value="${esc(field.attributes?.value || 'Submit')}"
+               oninput="setAttr('${field.id}', 'value', this.value)" />
+           </div>`
+        : `<div class="${hasHolder ? 'two-col' : ''}">
+             <div class="config-row">
+               <label>Label</label>
+               <input type="text" value="${esc(field.label)}"
+                 oninput="setLabel('${field.id}', this.value)" />
+             </div>
+             ${hasHolder ? `
+             <div class="config-row">
+               <label>Placeholder</label>
+               <input type="text" value="${esc(field.attributes?.placeholder || '')}"
+                 oninput="setAttr('${field.id}', 'placeholder', this.value)" />
+             </div>` : ''}
+           </div>
+           <div class="config-row checkbox-row">
+             <label>
+               <input type="checkbox" ${field.attributes?.required ? 'checked' : ''}
+                 onchange="setAttr('${field.id}', 'required', this.checked)" />
+               Required field
+             </label>
+           </div>
+           ${optionsHtml}`;
+
+      const div = document.createElement('div');
+      div.className = 'field-card';
+      div.innerHTML = `
+        <div class="card-header">
+          <span class="type-badge type-${field.type}">${field.type}</span>
+          <div class="card-actions">
+            <button class="action-btn" onclick="moveField('${field.id}',-1)" ${isFirst ? 'disabled' : ''} title="Move up">↑</button>
+            <button class="action-btn" onclick="moveField('${field.id}', 1)" ${isLast  ? 'disabled' : ''} title="Move down">↓</button>
+            <button class="action-btn delete" onclick="removeField('${field.id}')" title="Remove">✕</button>
+          </div>
+        </div>
+        <div class="card-body">${bodyHtml}</div>`;
+      return div;
+    }
+
+    // ─── Save ─────────────────────────────────────────────────────────────────
+    async function saveForm() {
+      const title = document.getElementById('form-title').value.trim();
+      if (!title) { toast('Please enter a form title.', 'error'); return; }
+      if (formFields.length === 0) { toast('Please add at least one field.', 'error'); return; }
+
+      if (!formFields.some(f => f.type === 'submit')) {
+        if (!confirm('No Submit button found — add one automatically?')) return;
+        addField('submit');
+      }
+
+      const btn = document.getElementById('save-btn');
+      btn.innerHTML = '<span class="spinner"></span> Saving…';
+      btn.disabled  = true;
+
+      try {
+        const isNew = !currentFormId;
+        const res   = await fetch('http://localhost:3001/api/forms/register', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            formId:      currentFormId,
+            title,
+            description: document.getElementById('form-description').value.trim(),
+            fieldMeta:   formFields.map(f => ({ id: f.id, type: f.type, label: f.label })),
+            fieldDefs:   formFields.map(f => ({
+              id:         f.id,
+              type:       f.type,
+              label:      f.label,
+              attributes: f.attributes || {},
+              options:    f.options,
+            })),
+          }),
+        });
+
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const { formId } = await res.json();
+        currentFormId = formId;
+
+        toast(isNew ? '✓ Form created successfully.' : '✓ Form updated successfully.');
+        await loadForms();
+
+        const visibleCount = formFields.filter(f => f.type !== 'submit' && f.type !== 'hidden').length;
+        document.getElementById('topbar-title').textContent    = `Editing: ${title}`;
+        document.getElementById('topbar-subtitle').textContent = `${visibleCount} field${visibleCount !== 1 ? 's' : ''} · saved just now`;
+        renderList(allForms);
+      } catch {
+        toast('Save failed — is proxy-server.js running on port 3001?', 'error');
+      } finally {
+        btn.innerHTML = 'Save Form';
+        btn.disabled  = false;
+      }
+    }
+
+    // ─── Init ─────────────────────────────────────────────────────────────────
+    loadForms();
+  </script>
+
+</body>
+</html>

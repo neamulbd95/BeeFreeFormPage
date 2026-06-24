@@ -58,7 +58,7 @@ app.get('/proxy/health', (req, res) => {
 // Called by the form builder when the user clicks "Save Form".
 // Returns a stable formId that gets embedded as a hidden field in the rendered form.
 app.post('/api/forms/register', (req, res) => {
-  const { formId: existingId, title, description, fieldMeta } = req.body;
+  const { formId: existingId, title, description, fieldMeta, fieldDefs } = req.body;
 
   const formId = existingId ||
     'form_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
@@ -68,6 +68,7 @@ app.post('/api/forms/register', (req, res) => {
     title:       title       || 'Untitled Form',
     description: description || '',
     fieldMeta:   fieldMeta   || [],   // [{ id, type, label }] — used to label submissions
+    fieldDefs:   fieldDefs   || [],   // [{ id, type, label, attributes, options }] — full def for editing
     createdAt:   formRegistry[formId]?.createdAt || new Date().toISOString(),
     updatedAt:   new Date().toISOString(),
   };
