@@ -660,9 +660,12 @@
         manageForm: {
           label: 'Design Form',
           handler: async (resolve, reject, args) => {
-            const hasFields = args && args.structure &&
-              args.structure.layout && args.structure.layout.length > 0;
+            // args carries form data directly: args.layout, args.fields, args.title …
+            // (there is no args.structure wrapper)
+            const hasFields = args && Array.isArray(args.layout) && args.layout.length > 0;
 
+            // Only block when the user is dropping a *new* form block onto the page.
+            // Editing an existing block (hasFields === true) must always be allowed.
             if (!hasFields && countFormsOnPage() > 0) {
               reject();
               showValidationToast('Only one form is allowed per page. Click the existing form block to edit it.');
@@ -672,7 +675,7 @@
             resolveForm = resolve;
             rejectForm  = reject;
 
-            if (hasFields) loadExistingForm(args.structure);
+            if (hasFields) loadExistingForm(args);
             else           resetForm();
 
             openModal();
