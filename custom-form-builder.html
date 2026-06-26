@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <title>Beefree SDK - Custom Form Builder</title>
   <meta charset="utf-8" />
+  <title>Beefree SDK - Custom Form Builder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -163,17 +163,12 @@
       font-size: 13px; font-weight: 500; z-index: 99999;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
       display: flex; align-items: center; gap: 10px; max-width: 480px;
-      animation: toastSlideDown 0.2s ease;
     }
     #validation-toast .toast-close {
       margin-left: 12px; cursor: pointer; color: #FCA5A5;
       font-size: 16px; line-height: 1; background: none; border: none; padding: 0;
     }
     #validation-toast .toast-close:hover { color: #DC2626; }
-    @keyframes toastSlideDown {
-      from { top: 0; opacity: 0; }
-      to   { top: 20px; opacity: 1; }
-    }
   </style>
 </head>
 
@@ -185,7 +180,7 @@
   <div id="validation-toast" style="display:none">
     <span>⛔</span>
     <span id="validation-toast-msg"></span>
-    <button class="toast-close" onclick="hideValidationToast()" title="Dismiss">✕</button>
+    <button type="button" class="toast-close" onclick="hideValidationToast()" title="Dismiss">✕</button>
   </div>
 
   <!-- ── Form Builder Modal ── -->
@@ -195,7 +190,7 @@
       <!-- Header -->
       <div class="d-flex align-items-center justify-content-between px-4 py-3 border-bottom bg-white flex-shrink-0">
         <h6 class="mb-0 fb-modal-title">Form Builder</h6>
-        <button class="btn btn-sm btn-light fb-close-btn" onclick="cancelForm()" title="Cancel">✕</button>
+        <button type="button" class="btn btn-sm btn-light fb-close-btn" onclick="cancelForm()" title="Cancel">✕</button>
       </div>
 
       <!-- Body -->
@@ -205,34 +200,34 @@
         <div class="fb-sidebar border-right bg-light p-3">
           <p class="text-uppercase text-muted font-weight-bold mb-2 sidebar-section-label">Basic Fields</p>
 
-          <button class="field-type-btn" onclick="addField('text')">
+          <button type="button" class="field-type-btn" onclick="addField('text')">
             <span class="btn-icon">T</span> Text
           </button>
-          <button class="field-type-btn" onclick="addField('email')">
+          <button type="button" class="field-type-btn" onclick="addField('email')">
             <span class="btn-icon">@</span> Email
           </button>
-          <button class="field-type-btn" onclick="addField('number')">
+          <button type="button" class="field-type-btn" onclick="addField('number')">
             <span class="btn-icon">#</span> Number
           </button>
-          <button class="field-type-btn" onclick="addField('textarea')">
+          <button type="button" class="field-type-btn" onclick="addField('textarea')">
             <span class="btn-icon">¶</span> Long Text
           </button>
-          <button class="field-type-btn" onclick="addField('password')">
+          <button type="button" class="field-type-btn" onclick="addField('password')">
             <span class="btn-icon">••</span> Password
           </button>
 
           <hr class="my-2" />
           <p class="text-uppercase text-muted font-weight-bold mb-2 sidebar-section-label">Choice Fields</p>
-          <button class="field-type-btn" onclick="addField('select')">
+          <button type="button" class="field-type-btn" onclick="addField('select')">
             <span class="btn-icon">▾</span> Dropdown
           </button>
-          <button class="field-type-btn" onclick="addField('radio')">
+          <button type="button" class="field-type-btn" onclick="addField('radio')">
             <span class="btn-icon">◉</span> Radio Group
           </button>
 
           <hr class="my-2" />
           <p class="text-uppercase text-muted font-weight-bold mb-2 sidebar-section-label">Action</p>
-          <button class="field-type-btn submit-type" onclick="addField('submit')">
+          <button type="button" class="field-type-btn submit-type" onclick="addField('submit')">
             <span class="btn-icon">→</span> Submit
           </button>
         </div>
@@ -275,8 +270,8 @@
       <div class="d-flex align-items-center justify-content-between px-4 py-3 border-top bg-white flex-shrink-0">
         <span class="text-muted small" id="field-count">0 fields</span>
         <div class="d-flex footer-actions">
-          <button class="btn btn-secondary btn-sm" onclick="cancelForm()">Cancel</button>
-          <button class="btn btn-primary btn-sm" id="save-btn" onclick="saveForm()">Save Form</button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="cancelForm()">Cancel</button>
+          <button type="button" class="btn btn-primary btn-sm" id="save-btn" onclick="saveForm()">Save Form</button>
         </div>
       </div>
 
@@ -506,19 +501,40 @@
       };
       layout.push(['form_id']);
 
+      // Collect labels for non-submit visible fields to embed in the form
+      const labelMap = {};
+
       formFields.forEach(f => {
+        const attrs = { ...f.attributes };
+        if (f.type !== 'submit') {
+          attrs['data-label'] = f.label || '';
+          labelMap[f.id] = f.label || '';
+        }
         const def = {
           type:                   f.type,
           label:                  f.label || '',
           canBeRemovedFromLayout: true,
           removeFromLayout:       false,
           canBeModified:          true,
-          attributes:             { ...f.attributes },
+          attributes:             attrs,
         };
         if (f.options) def.options = f.options.map(o => ({ ...o }));
         fields[f.id] = def;
         layout.push([f.id]);
       });
+
+      // Hidden field that carries all labels so submissions don't need the registry to resolve them
+      fields['__field_labels'] = {
+        type:                   'hidden',
+        label:                  '',
+        removeFromLayout:       false,
+        canBeRemovedFromLayout: false,
+        canBeModified:          false,
+        attributes:             { name: '__field_labels', value: JSON.stringify(labelMap) },
+      };
+      layout.push(['__field_labels']);
+
+      console.log('Built form structure:', { title, description, fields, layout });
 
       return {
         structure: {
@@ -550,7 +566,7 @@
       formFields = [];
       (structure.layout || []).forEach(row => {
         const id  = row[0];
-        if (id === 'form_id') return;
+        if (id === 'form_id' || id === '__field_labels') return;
         const def = (structure.fields || {})[id];
         if (!def || def.removeFromLayout) return;
         formFields.push({
@@ -734,10 +750,7 @@
     function initBee(token) {
       BeePlugin.create(token, beeConfig, instance => {
         bee = instance;
-        fetch('./template.json')
-          .then(r => r.json())
-          .then(t => bee.start(t))
-          .catch(() => bee.start({}));
+        bee.start({});
       });
     }
 

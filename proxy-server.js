@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const path = require('path');
+const fs = require('fs');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -16,16 +17,32 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.text({ type: 'text/html', limit: '50mb' }));
 app.use(express.static(path.join(__dirname)));
 
-// ── In-memory stores ──────────────────────────────────────────────────────────
+// ── Persistent stores ─────────────────────────────────────────────────────────
 //
-// formRegistry: tracks every form that was saved from the builder
-//   { [formId]: { formId, title, description, fieldMeta[], createdAt, updatedAt } }
+// formRegistry: written to form-registry.json on every save so it survives restarts
+// submissions:  in-memory only (resets on restart)
 //
-// submissions: per-form submission buckets
-//   { [formId]: [{ id, formId, formTitle, timestamp, labeled, raw }] }
-//
-const formRegistry = {};
-const submissions  = {};
+const REGISTRY_PATH = path.join(__dirname, 'form-registry.json');
+
+let formRegistry = {};
+try {
+  if (fs.existsSync(REGISTRY_PATH)) {
+    formRegistry = JSON.parse(fs.readFileSync(REGISTRY_PATH, 'utf8'));
+    console.log(`[Registry] Loaded ${Object.keys(formRegistry).length} form(s) from disk`);
+  }
+} catch (e) {
+  console.warn('[Registry] Could not load registry file, starting fresh:', e.message);
+}
+
+function saveRegistry() {
+  try {
+    fs.writeFileSync(REGISTRY_PATH, JSON.stringify(formRegistry, null, 2));
+  } catch (e) {
+    console.warn('[Registry] Could not write registry file:', e.message);
+  }
+}
+
+const submissions = {};
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 app.post('/proxy/bee-auth', async (req, res) => {
@@ -60,6 +77,14 @@ app.get('/proxy/health', (req, res) => {
 app.post('/api/forms/register', (req, res) => {
   const { formId: existingId, title, description, fieldMeta, fieldDefs } = req.body;
 
+  console.log(`[Form Register] ${existingId ? 'Updating' : 'Registering'} form:`, {
+    formId: existingId || '(new)',
+    title,
+    description,
+    fieldMeta,
+    fieldDefs,
+  });
+
   const formId = existingId ||
     'form_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
 
@@ -75,6 +100,7 @@ app.post('/api/forms/register', (req, res) => {
 
   if (!submissions[formId]) submissions[formId] = [];
 
+  saveRegistry();
   console.log(`[Form ${existingId ? 'Updated' : 'Registered'}] ${formId} — "${formRegistry[formId].title}"`);
   res.json({ formId });
 });
@@ -97,24 +123,64 @@ app.get('/api/forms/:formId', (req, res) => {
 
 // ── Form Submissions ──────────────────────────────────────────────────────────
 
+// Re-compute labeled fields from the live registry, falling back to labels embedded
+// in the submission's __field_labels hidden field, then to raw field IDs.
+function relabelSubmission(submission) {
+  const raw = submission.raw || {};
+
+  // Parse labels embedded by the form builder into the hidden __field_labels field
+  let embeddedLabels = {};
+  if (raw.__field_labels) {
+    try { embeddedLabels = JSON.parse(raw.__field_labels); } catch (e) {}
+  }
+
+  const form = formRegistry[submission.formId];
+  if (form && Array.isArray(form.fieldMeta) && form.fieldMeta.length) {
+    return form.fieldMeta
+      .filter(m => m.type !== 'submit' && m.type !== 'hidden')
+      .filter(m => raw[m.id] !== undefined)
+      .map(m => ({ field: m.id, label: m.label, value: raw[m.id] }));
+  }
+
+  // Registry not available — use embedded label map if present
+  if (Object.keys(embeddedLabels).length > 0) {
+    return Object.entries(embeddedLabels)
+      .filter(([id]) => raw[id] !== undefined)
+      .map(([id, label]) => ({ field: id, label, value: raw[id] }));
+  }
+
+  // Last resort — field ID as label
+  return submission.labeled;
+}
+
 // Receive a submitted form.
 // form_id in the body (injected as a hidden field by the builder) identifies the source form.
 // Field keys in req.body are matched against the stored fieldMeta to produce labeled results.
 app.post('/api/form-submit', (req, res) => {
   const rawBody  = req.body;
+  console.log('[Form Submit] Received submission:', rawBody);
   const form_id  = rawBody.form_id || null;
   const form     = form_id ? formRegistry[form_id] : null;
 
-  // Build a labeled view of the submission using stored field metadata.
-  // Excludes hidden + submit fields — only user-visible input fields.
+  // Parse labels embedded by the builder into __field_labels hidden field
+  let embeddedLabels = {};
+  if (rawBody.__field_labels) {
+    try { embeddedLabels = JSON.parse(rawBody.__field_labels); } catch (e) {}
+  }
+
+  // Build a labeled view — registry first, embedded labels second, field IDs last
   const labeled = form
     ? form.fieldMeta
         .filter(m => m.type !== 'submit' && m.type !== 'hidden')
         .filter(m => rawBody[m.id] !== undefined)
         .map(m => ({ field: m.id, label: m.label, value: rawBody[m.id] }))
-    : Object.entries(rawBody)
-        .filter(([k]) => k !== 'form_id')
-        .map(([k, v]) => ({ field: k, label: k, value: v }));
+    : Object.keys(embeddedLabels).length > 0
+      ? Object.entries(embeddedLabels)
+          .filter(([id]) => rawBody[id] !== undefined)
+          .map(([id, label]) => ({ field: id, label, value: rawBody[id] }))
+      : Object.entries(rawBody)
+          .filter(([k]) => k !== 'form_id' && k !== '__field_labels')
+          .map(([k, v]) => ({ field: k, label: k, value: v }));
 
   const submission = {
     id:        'sub_' + Date.now(),
@@ -175,7 +241,7 @@ app.get('/api/forms/:formId/submissions', (req, res) => {
   const subs = (submissions[req.params.formId] || []).map(s => ({
     id:        s.id,
     timestamp: s.timestamp,
-    data:      s.labeled,
+    data:      relabelSubmission(s),
     raw:       s.raw,
   }));
 
@@ -193,7 +259,12 @@ app.get('/api/forms/:formId/submissions', (req, res) => {
 app.get('/api/form-submissions', (req, res) => {
   const all = Object.values(submissions)
     .flat()
-    .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+    .sort((a, b) => b.timestamp.localeCompare(a.timestamp))
+    .map(s => ({
+      ...s,
+      formTitle: formRegistry[s.formId]?.title || s.formTitle,
+      labeled:   relabelSubmission(s),
+    }));
   res.json({ total: all.length, submissions: all });
 });
 
