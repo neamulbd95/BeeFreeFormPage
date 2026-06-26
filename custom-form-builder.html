@@ -523,14 +523,15 @@
         layout.push([f.id]);
       });
 
-      // Hidden field that carries all labels so submissions don't need the registry to resolve them
+      // Hidden field that carries all labels so submissions don't need the registry to resolve them.
+      // Base64-encoded to avoid double-quote characters breaking the HTML value attribute.
       fields['__field_labels'] = {
         type:                   'hidden',
         label:                  '',
         removeFromLayout:       false,
         canBeRemovedFromLayout: false,
         canBeModified:          false,
-        attributes:             { name: '__field_labels', value: JSON.stringify(labelMap) },
+        attributes:             { name: '__field_labels', value: btoa(JSON.stringify(labelMap)) },
       };
       layout.push(['__field_labels']);
 
@@ -544,7 +545,7 @@
           layout,
           attributes: {
             'accept-charset': 'UTF-8',
-            action:           'http://localhost:3001/api/form-submit',
+            action:           'http://localhost:5000/api/form-submit',
             autocomplete:     'on',
             enctype:          'application/x-www-form-urlencoded',
             method:           'post',
@@ -656,7 +657,7 @@
         title: '', description: '', fields: {}, layout: [],
         attributes: {
           'accept-charset': 'UTF-8',
-          action:           'http://localhost:3001/api/form-submit',
+          action:           'http://localhost:5000/api/form-submit',
           autocomplete:     'on',
           enctype:          'application/x-www-form-urlencoded',
           method:           'post',

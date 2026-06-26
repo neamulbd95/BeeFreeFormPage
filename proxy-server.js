@@ -131,7 +131,7 @@ function relabelSubmission(submission) {
   // Parse labels embedded by the form builder into the hidden __field_labels field
   let embeddedLabels = {};
   if (raw.__field_labels) {
-    try { embeddedLabels = JSON.parse(raw.__field_labels); } catch (e) {}
+    try { embeddedLabels = JSON.parse(Buffer.from(raw.__field_labels, 'base64').toString()); } catch (e) {}
   }
 
   const form = formRegistry[submission.formId];
@@ -165,7 +165,7 @@ app.post('/api/form-submit', (req, res) => {
   // Parse labels embedded by the builder into __field_labels hidden field
   let embeddedLabels = {};
   if (rawBody.__field_labels) {
-    try { embeddedLabels = JSON.parse(rawBody.__field_labels); } catch (e) {}
+    try { embeddedLabels = JSON.parse(Buffer.from(rawBody.__field_labels, 'base64').toString()); } catch (e) {}
   }
 
   // Build a labeled view — registry first, embedded labels second, field IDs last

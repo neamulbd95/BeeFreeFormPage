@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FormSubmissionApi/1.0.0": {
+        "runtime": {
+          "FormSubmissionApi.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FormSubmissionApi/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
