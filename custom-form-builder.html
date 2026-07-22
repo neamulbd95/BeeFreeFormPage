@@ -544,6 +544,21 @@
           // All share the same name (f.id) so the browser submits them as a repeated key.
           // Field IDs follow {groupId}__cb_{index} so loadExistingForm can reconstruct the group.
           labelMap[f.id] = f.label || '';
+
+          // Checkbox fields render their `label` inline next to the input (unlike
+          // select/radio, which show it above the control), so the group's own label
+          // needs its own visible `label`-type field or it never appears on the canvas.
+          const labelId = `${f.id}__label`;
+          fields[labelId] = {
+            type:                   'label',
+            label:                  f.label || '',
+            canBeRemovedFromLayout: true,
+            removeFromLayout:       false,
+            canBeModified:          true,
+            attributes:             {},
+          };
+          layout.push([labelId]);
+
           const cbIds = [];
           (f.options || []).forEach((opt, i) => {
             const cbId = `${f.id}__cb_${i}`;
@@ -634,11 +649,17 @@
       formFields = [];
       const seenGroups = new Set();
 
-      (structure.layout || []).forEach(row => {
-        const id  = row[0];
+      // A row can hold multiple field IDs (multiselect checkboxes are packed
+      // MULTISELECT_COLS-per-row), so every ID in the row must be visited —
+      // not just row[0] — or later options in a group get silently dropped.
+      (structure.layout || []).forEach(row => row.forEach(id => {
         if (id === 'form_id' || id === '__field_labels') return;
         const def = (structure.fields || {})[id];
         if (!def || def.removeFromLayout) return;
+
+        // Group-label helper field for a multiselect — regenerated from f.label on
+        // every save, not a real field, so skip it when reconstructing formFields.
+        if (def.type === 'label') return;
 
         // Multiselect checkbox group — IDs follow {groupId}__cb_{index}
         if (def.type === 'checkbox' && id.includes('__cb_')) {
@@ -668,7 +689,7 @@
           attributes: { ...(def.attributes || {}) },
           options:    def.options ? def.options.map(o => ({ ...o })) : undefined,
         });
-      });
+      }));
 
       renderFields();
     }
