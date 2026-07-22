@@ -22,6 +22,11 @@ build/
 *.log
 *.tmp
 *.swp
+*.dll
+*.exe
+
 
 package-lock.json
 yarn.lock
+
+FormSubmissionApi/

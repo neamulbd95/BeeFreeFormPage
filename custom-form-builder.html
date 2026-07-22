@@ -48,6 +48,7 @@
     }
     .field-type-btn:hover        { border-color: #818CF8; color: #4F46E5; background: #EEF2FF; }
     .field-type-btn.submit-type:hover { border-color: #34D399; color: #059669; background: #ECFDF5; }
+    .field-type-btn:disabled     { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
     .btn-icon {
       width: 22px; height: 22px; border-radius: 5px;
       background: #f1f5f9; display: flex; align-items: center;
@@ -64,7 +65,11 @@
     .type-email                { background: #FEF3C7; color: #D97706; }
     .type-number               { background: #E0F2FE; color: #0284C7; }
     .type-textarea             { background: #F0FDF4; color: #16A34A; }
-    .type-select, .type-radio  { background: #FDF4FF; color: #9333EA; }
+    .type-select, .type-radio        { background: #FDF4FF; color: #9333EA; }
+    .type-multiselect                 { background: #ECFEFF; color: #0891B2; }
+    .required-badge { font-size: 10px; font-weight: 700; padding: 2px 6px;
+      border-radius: 4px; background: #FEF2F2; color: #DC2626;
+      letter-spacing: 0.04em; margin-left: 6px; }
     .type-submit               { background: #ECFDF5; color: #059669; }
 
     /* ── Field card hover ── */
@@ -221,13 +226,16 @@
           <button type="button" class="field-type-btn" onclick="addField('select')">
             <span class="btn-icon">▾</span> Dropdown
           </button>
+          <button type="button" class="field-type-btn" onclick="addField('multiselect')">
+            <span class="btn-icon">▾▾</span> Multi-Select
+          </button>
           <button type="button" class="field-type-btn" onclick="addField('radio')">
             <span class="btn-icon">◉</span> Radio Group
           </button>
 
           <hr class="my-2" />
           <p class="text-uppercase text-muted font-weight-bold mb-2 sidebar-section-label">Action</p>
-          <button type="button" class="field-type-btn submit-type" onclick="addField('submit')">
+          <button type="button" id="add-submit-btn" class="field-type-btn submit-type" onclick="addField('submit')">
             <span class="btn-icon">→</span> Submit
           </button>
         </div>
@@ -307,6 +315,8 @@
     }
 
     // ─── Field defaults ───────────────────────────────────────────────────────
+    const MULTISELECT_COLS = 3; // max checkboxes per row in the BeeFree canvas
+
     const FIELD_DEFAULTS = {
       text:     { label: 'Text Input',    attributes: { required: false, placeholder: '' } },
       email:    { label: 'Email Address', attributes: { required: false, placeholder: '' } },
@@ -318,6 +328,14 @@
         options: [
           { type: 'option', label: 'Option 1', value: 'option_1' },
           { type: 'option', label: 'Option 2', value: 'option_2' },
+        ]
+      },
+      multiselect: {
+        label: 'Choose options', attributes: { required: false },
+        options: [
+          { type: 'option', label: 'Option 1', value: 'option_1' },
+          { type: 'option', label: 'Option 2', value: 'option_2' },
+          { type: 'option', label: 'Option 3', value: 'option_3' },
         ]
       },
       radio: {
@@ -338,6 +356,10 @@
     function addField(type) {
       const defaults = FIELD_DEFAULTS[type];
       if (!defaults) return;
+      if (type === 'submit' && formFields.some(f => f.type === 'submit')) {
+        showValidationToast('Only one Submit button is allowed per form.');
+        return;
+      }
       formFields.push({
         id:         uid(type),
         type,
@@ -368,7 +390,12 @@
 
     function setAttr(id, key, val) {
       const f = formFields.find(f => f.id === id);
-      if (f) { if (!f.attributes) f.attributes = {}; f.attributes[key] = val; }
+      if (f) { 
+        if (!f.attributes) {
+          f.attributes = {}; 
+          f.attributes[key] = val;
+        } 
+      }
     }
 
     function addOption(id) {
@@ -406,6 +433,10 @@
 
       counter.textContent = formFields.length + (formFields.length === 1 ? ' field' : ' fields');
 
+      // Disable the Submit palette button when a submit field already exists
+      const submitBtn = document.getElementById('add-submit-btn');
+      if (submitBtn) submitBtn.disabled = formFields.some(f => f.type === 'submit');
+
       if (formFields.length === 0) {
         container.innerHTML = '';
         empty.style.display = 'flex';
@@ -421,7 +452,7 @@
       const isLast     = index === formFields.length - 1;
       const isSubmit   = field.type === 'submit';
       const hasHolder  = ['text','email','number','textarea','password'].includes(field.type);
-      const hasOptions = field.type === 'select' || field.type === 'radio';
+      const hasOptions = ['select','multiselect','radio'].includes(field.type);
 
       const optionsBlock = hasOptions ? `
         <div class="options-section">
@@ -462,7 +493,7 @@
            <div class="d-flex align-items-center mt-2">
              <label class="mb-0 d-flex align-items-center required-label">
                <input type="checkbox" class="required-checkbox" ${field.attributes?.required ? 'checked' : ''}
-                 onchange="setAttr('${field.id}', 'required', this.checked)" />
+                 onchange="setAttr('${field.id}', 'required', this.checked); renderFields()" />
                Required field
              </label>
            </div>
@@ -472,7 +503,10 @@
       div.className = 'field-card card mb-2';
       div.innerHTML = `
         <div class="card-header d-flex align-items-center justify-content-between py-2 px-3">
-          <span class="type-badge type-${field.type}">${field.type}</span>
+          <div class="d-flex align-items-center">
+            <span class="type-badge type-${field.type}">${field.type}</span>
+            ${field.attributes?.required ? '<span class="required-badge">* Required</span>' : ''}
+          </div>
           <div class="d-flex card-actions">
             <button class="action-btn" onclick="moveField('${field.id}', -1)" ${isFirst ? 'disabled' : ''} title="Move up">↑</button>
             <button class="action-btn" onclick="moveField('${field.id}',  1)" ${isLast  ? 'disabled' : ''} title="Move down">↓</button>
@@ -505,11 +539,44 @@
       const labelMap = {};
 
       formFields.forEach(f => {
+        if (f.type === 'multiselect') {
+          // Render each option as an individual checkbox field in BeeFree.
+          // All share the same name (f.id) so the browser submits them as a repeated key.
+          // Field IDs follow {groupId}__cb_{index} so loadExistingForm can reconstruct the group.
+          labelMap[f.id] = f.label || '';
+          const cbIds = [];
+          (f.options || []).forEach((opt, i) => {
+            const cbId = `${f.id}__cb_${i}`;
+            fields[cbId] = {
+              type:                   'checkbox',
+              label:                  opt.label || '',
+              canBeRemovedFromLayout: true,
+              removeFromLayout:       false,
+              canBeModified:          true,
+              attributes: {
+                name:         f.id,
+                value:        opt.value || '',
+                'data-label': f.label || '',
+              },
+            };
+            cbIds.push(cbId);
+          });
+          // Pack checkboxes into rows of MULTISELECT_COLS
+          for (let i = 0; i < cbIds.length; i += MULTISELECT_COLS) {
+            layout.push(cbIds.slice(i, i + MULTISELECT_COLS));
+          }
+          return; // skip the generic path below
+        }
+
         const attrs = { ...f.attributes };
+        // Omit required when false — HTML treats any presence of the attribute as "required",
+        // so required="false" would still enforce validation.
+        if (!attrs.required) delete attrs.required;
         if (f.type !== 'submit') {
           attrs['data-label'] = f.label || '';
           labelMap[f.id] = f.label || '';
         }
+
         const def = {
           type:                   f.type,
           label:                  f.label || '',
@@ -565,11 +632,35 @@
       currentFormId = idField?.attributes?.value || null;
 
       formFields = [];
+      const seenGroups = new Set();
+
       (structure.layout || []).forEach(row => {
         const id  = row[0];
         if (id === 'form_id' || id === '__field_labels') return;
         const def = (structure.fields || {})[id];
         if (!def || def.removeFromLayout) return;
+
+        // Multiselect checkbox group — IDs follow {groupId}__cb_{index}
+        if (def.type === 'checkbox' && id.includes('__cb_')) {
+          const groupId = id.split('__cb_')[0];
+          if (!seenGroups.has(groupId)) {
+            seenGroups.add(groupId);
+            formFields.push({
+              id:         groupId,
+              type:       'multiselect',
+              label:      def.attributes?.['data-label'] || groupId,
+              attributes: { required: false },
+              options:    [],
+            });
+          }
+          formFields.find(f => f.id === groupId).options.push({
+            type:  'option',
+            label: def.label || '',
+            value: def.attributes?.value || '',
+          });
+          return;
+        }
+
         formFields.push({
           id,
           type:       def.type,
