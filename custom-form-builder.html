@@ -326,23 +326,23 @@
       select: {
         label: 'Choose an option', attributes: { required: false },
         options: [
-          { type: 'option', label: 'Option 1', value: 'option_1' },
-          { type: 'option', label: 'Option 2', value: 'option_2' },
+          { type: 'option', label: 'Option 1', value: 'Option 1' },
+          { type: 'option', label: 'Option 2', value: 'Option 2' },
         ]
       },
       multiselect: {
         label: 'Choose options', attributes: { required: false },
         options: [
-          { type: 'option', label: 'Option 1', value: 'option_1' },
-          { type: 'option', label: 'Option 2', value: 'option_2' },
-          { type: 'option', label: 'Option 3', value: 'option_3' },
+          { type: 'option', label: 'Option 1', value: 'Option 1' },
+          { type: 'option', label: 'Option 2', value: 'Option 2' },
+          { type: 'option', label: 'Option 3', value: 'Option 3' },
         ]
       },
       radio: {
         label: 'Choose one', attributes: { required: false },
         options: [
-          { type: 'option', label: 'Option A', value: 'option_a' },
-          { type: 'option', label: 'Option B', value: 'option_b' },
+          { type: 'option', label: 'Option A', value: 'Option A' },
+          { type: 'option', label: 'Option B', value: 'Option B' },
         ]
       },
       submit: { label: '', attributes: { value: 'Submit', name: 'submit_button' } },
@@ -402,7 +402,7 @@
       const f = formFields.find(f => f.id === id);
       if (!f || !f.options) return;
       const n = f.options.length + 1;
-      f.options.push({ type: 'option', label: 'Option ' + n, value: 'option_' + n });
+      f.options.push({ type: 'option', label: 'Option ' + n, value: 'Option ' + n });
       renderFields();
     }
 
@@ -415,7 +415,7 @@
       const f = formFields.find(f => f.id === id);
       if (f && f.options && f.options[idx]) {
         f.options[idx].label = val;
-        f.options[idx].value = val.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+        f.options[idx].value = val;
       }
     }
 
